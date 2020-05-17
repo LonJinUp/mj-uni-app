@@ -1,0 +1,84 @@
+
+.add{
+	width: 686rpx;
+	height: 90rpx;
+	border-radius: 10rpx;
+	margin: 20rpx auto;
+	background-color: #247BFF;
+	color: #fff;
+	font-size: 30rpx;
+	text-align: center;
+	line-height: 100rpx;
+	font-weight: bold;
+	letter-spacing: 2rpx;
+}
+.app{
+	width: 100%;
+	height: auto;
+	box-sizing: border-box;
+	padding-top: 30rpx;
+}
+.input-box{
+	width: 100%;
+	height: 140rpx;
+	box-sizing: border-box;
+	padding: 0 30rpx;
+}
+.input-box textarea{
+	width: 100%;
+	height: 100%;
+	border-radius: 10rpx;
+	border:1px solid rgba(122, 126, 131,.6);
+	box-sizing: border-box;
+	padding: 10rpx;
+}
+.help{
+	width: 100%;
+	height: auto;
+	box-sizing: border-box;
+	padding: 30rpx;
+}
+.help .content{
+	width: 100%;
+	height: auto;
+	box-sizing: border-box;
+	padding: 20rpx;
+	background-color: #fff;
+	box-shadow: 0 15rpx 30rpx rgba(0,0,0,.1);
+	box-sizing: border-box;
+	padding: 30rpx;
+	border-radius: 30rpx;
+}
+.help .content .title{
+	width: 100%;
+	height: auto;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+	-webkit-box-pack: start;
+	-webkit-justify-content: flex-start;
+	        justify-content: flex-start;
+	font-size: 28rpx;
+	color: #333;
+	font-weight: bold;
+	padding-bottom: 20rpx;
+	border-bottom: 1px solid #c5c7c8;
+}
+.help .content .title image{
+	width: 40rpx;
+	height: 40rpx;
+	margin-right: 16rpx;
+}
+.help .content .cons{
+	font-size: 26rpx;
+	color: #616161;
+	letter-spacing: 1px;
+	padding: 20rpx 0;
+}
+page{
+	background-color: #F8F8F8;
+}
+

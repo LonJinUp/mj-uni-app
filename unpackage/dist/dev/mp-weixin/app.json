@@ -1,0 +1,44 @@
+{
+  "pages": [
+    "pages/add/index",
+    "pages/my/index",
+    "pages/login/index",
+    "pages/index/index",
+    "pages/article/index",
+    "pages/videolist/index"
+  ],
+  "subPackages": [],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "分享秘籍",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "backgroundColor": "#F8F8F8"
+  },
+  "tabBar": {
+    "color": "#7A7E83",
+    "selectedColor": "#1296db",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "static/images/index.png",
+        "selectedIconPath": "static/images/index-hover.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/add/index",
+        "iconPath": "static/images/MessageAdd.png",
+        "selectedIconPath": "static/images/MessageAdd-hover.png",
+        "text": "添加"
+      },
+      {
+        "pagePath": "pages/my/index",
+        "iconPath": "static/images/my.png",
+        "selectedIconPath": "static/images/my-hover.png",
+        "text": "我的"
+      }
+    ]
+  },
+  "usingComponents": {}
+}
