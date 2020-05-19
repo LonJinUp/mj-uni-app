@@ -28,9 +28,8 @@ let api={
 	videolist:website+'/app/index.php?i='+unciacid+'&c=entry&do=videlist_json&m=huoban_mima',//视频列表
 	banner:website+'/app/index.php?i='+unciacid+'&c=entry&do=lunbo&m=huoban_mima&id=2269&wxref=mp.weixin.qq.com',//banner
 	article:website+'/app/index.php?i='+unciacid+'&c=entry&do=hotlist_json&m=huoban_mima',//热文推荐
+	articleDetail:website+'/app/index.php?i='+unciacid+'&c=entry&do=getrwdetail&m=huoban_mima',//热文详情
 	myArticle:website+'/app/index.php?i='+unciacid+'&c=entry&sjk=1&do=MywzList_json&type=&m=huoban_mima&openid=',//我的文章
-	articleDetail:website+'/app/index.php?i='+unciacid+'39&c=entry&do=getrwdetail&m=huoban_mima'
-	
 	
 }
 
