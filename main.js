@@ -18,17 +18,24 @@ Vue.prototype.checkLogin = function(backpage, backtype){
 
 //定义全局api接口地址和token
 // var APITOKEN = TOKEN
-let website='http://web.17cheng.cn';
+let website='https://web.17cheng.cn';
 let unciacid=39;
 
 
 let api={
 	
-	login:website+'/app/index.php?i='+unciacid+'&c=entry&do=mobilelogin&m=huoban_mima',
-	videolist:website+'/app/index.php?i='+unciacid+'&c=entry&do=videlist_json&m=huoban_mima',
-	banner:website+'/app/index.php?i='+unciacid+'&c=entry&do=lunbo&m=huoban_mima&id=2269&wxref=mp.weixin.qq.com'
+	login:website+'/app/index.php?i='+unciacid+'&c=entry&do=mobilelogin&m=huoban_mima',//登录
+	videolist:website+'/app/index.php?i='+unciacid+'&c=entry&do=videlist_json&m=huoban_mima',//视频列表
+	banner:website+'/app/index.php?i='+unciacid+'&c=entry&do=lunbo&m=huoban_mima&id=2269&wxref=mp.weixin.qq.com',//banner
+	article:website+'/app/index.php?i='+unciacid+'&c=entry&do=hotlist_json&m=huoban_mima',//热文推荐
+	myArticle:website+'/app/index.php?i='+unciacid+'&c=entry&sjk=1&do=MywzList_json&type=&m=huoban_mima&openid=',//我的文章
+	articleDetail:website+'/app/index.php?i='+unciacid+'39&c=entry&do=getrwdetail&m=huoban_mima'
+	
 	
 }
+
+
+
 
 Vue.prototype.api=api;
 

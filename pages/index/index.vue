@@ -15,12 +15,12 @@
 			 </swiper>
 		</view>
 		<view class="tab">
-		        <view  class="items  active">
+		        <view class="items" :class="[status=='video'?'active':'']" data-type='video' @click="choose">
 		            <image src="https://ftp.17cheng.cn/images/39/2019/12/LHxhvtgtV50hTCpGVP05Wi4wGYVI0g.png" alt="">
 		            <view>热门视频</view>
 		        </view>
 				
-				<view class="items ">
+				<view class="items " :class="[status=='article'?'active':'']"  data-type='article'  @click="choose">
 		            <image src="https://ftp.17cheng.cn/images/39/2019/12/oM6f8C86wcx6cuGqbq66G5MEPKc5X0.png" alt="">
 		            <view>推荐热文</view>
 		        </view>
@@ -57,7 +57,7 @@
 		    </view>
 			
 			
-			<view class="choose">
+			<!-- <view class="choose">
 				<scroll-view  scroll-x="true" class="scroll-view_H" show-scrollbar='true'  scroll-left="100%">
 				   <view class="choose-item">何鲁丽</view>
 				   <view class="choose-item">何鲁丽</view>
@@ -70,14 +70,14 @@
 				   <view class="choose-item">何鲁丽</view>
 				   <view class="choose-item">何鲁丽</view>
 				</scroll-view>
-			</view>
+			</view> -->
 			<view class="border"></view>
 			
 			<view  class="Advertising">
 			   <image src="http://ftp.17cheng.cn/images/258/2019/11/wz0q6qfYFHIaiW4a02RoO0ezrAAFQZ.png" alt="">
 			</view>
 			
-			<view class="video-list">
+			<view class="video-list" v-if='status=="video"'>
 				<view class="left">
 					<view class="items" v-for='(item,index) in listleft' :key="index">
 						<image :src="item.pic1" mode="widthFix"></image>
@@ -102,6 +102,29 @@
 					</view>
 				</view>
 			</view>
+			
+			
+			
+			<view class="content-box" v-if='status=="article"'>
+				<view class="items" v-for='(items,index) in article' :key='index' @click="articleInfo" :data-id='items.id'>
+				        <view class="left">
+				            <view class="title" v-text='items.title'></view>
+				            <view class="user-box">
+				                <view class="name"  v-text='items.gzh'></view>
+				                <view class="num">
+				                     <image src="/static/images/tongji.png" alt=""></image>
+				                    <text v-text='items.usernum'></text>
+				                </view>
+				                <!-- <view  class="gai">改成我的  </view> -->
+				            </view>
+				        </view>
+				        <view class="right">
+				           <image :src="items.imgUrl" mode='widthFix' alt="">  
+				        </view>
+				 </view>
+				
+			</view>
+			
 			
 		
 			
@@ -129,36 +152,23 @@
 		  ],
 		  listleft:[],
 		  listright:[],
+		  article:[],
 		  page:1,
+		  status:'video'
 	    }
 	  },
+	  
 	  onLoad() {
 			// videolist
 			
 			const that=this;
-			// console.log(that.getBanner())
+			
 			that.getBanner()
 			let page=that.page;
-			uni.request({
-			    url:this.api.videolist+'&fenlei='+'&page='+page,
-			    success: (res) => {
-			       let list=res.data.data;
-				   console.log(list)
-				   var listleft=[];
-				   var listright=[];
-				   list.forEach((item,index)=>{
-					   if(index%2 ==0){
-						   listright.push(item)
-					   }else{
-						   listleft.push(item)
-					   }
-				   });
-				 
-				   that.listleft=listleft;
-				   that.listright=listright;
-					
-			    }
-			});
+			that.videoList();
+			console.log(that.api.articleDetail)
+			
+			
 	  },
 	  methods: {  
 	      getBanner:function(e){
@@ -172,6 +182,82 @@
 	      			}
 	      		})
 	      },
+		  //切换
+		  choose:function(e){
+		  	this.status=e.currentTarget.dataset.type;
+			this.page=1;
+			let status=this.status
+			if(status=='video'){
+				this.videoList()
+			}else{
+				this.getArticle()
+			}
+		  },
+		  
+		  //热文列表
+		  getArticle:function(e){
+			 const that=this;
+			 let page=that.page;
+			 let article=that.article;
+			 uni.request({
+			     url:this.api.article+'&lanmu=数码'+'&page='+page,
+			     success: (res) => {
+					
+		
+					
+					if(res.data.data!=''){
+						let list=[...article,...res.data.data]
+						
+						that.article=list;
+					}else{
+						uni.showToast({
+						    title: '加载到底啦',
+							icon:'none',
+						    duration: 2000
+						});
+					}
+					
+			     }
+			 });
+		  },
+		  
+		  //视频列表
+		  videoList:function(e){
+			  const that=this;
+				let page=that.page;
+			  uni.request({
+			      url:this.api.videolist+'&fenlei='+'&page='+page,
+			      success: (res) => {
+			         let list=res.data.data;
+			  	  if(list!=[]){
+			  	  	var listleft=that.listleft;
+			  	  	var listright=that.listright;
+			  	  	list.forEach((item,index)=>{
+			  	  		if(index%2 ==0){
+			  	  			listright.push(item);
+			  	  			that.listright=listright;
+			  	  		}else{
+			  	  			listleft.push(item);
+			  	  			that.listleft=listleft;
+						}
+			  	  	});
+			  	  }else{
+			  	  	uni.showToast({
+			  	  	    title: '加载到底啦',
+						icon:'none',
+			  	  	    duration: 2000
+			  	  	});
+			  	  }
+			  	  
+			      }
+			  });
+		  },
+		  //文章详情
+		  articleInfo:function(e){
+			  uni.navigateTo({
+			  	url:'/pages/articleInfo/index?id='+e.currentTarget.dataset.id
+			  })
+		  }
 	  },
 	  
 	 
@@ -182,25 +268,14 @@
 		  const that=this;
 		  let page=that.page;
 		  page++;
-		  this.page=page;
-		  uni.request({
-		      url:this.api.videolist+'&fenlei='+'&page='+page,
-		      success: (res) => {
-		         let list=res.data.data;
-		  	   console.log(list)
-		  	   var listleft=that.listleft;
-		  	   var listright=that.listright;
-		  	   list.forEach((item,index)=>{
-		  		   if(index%2 ==0){
-		  			   listright.push(item);
-					    that.listright=listright;
-		  		   }else{
-		  			   listleft.push(item);
-					   that.listleft=listleft;
-		  		   }
-		  	   });
-		      }
-		  });
+		 that.page=page;
+		 let status=this.status
+		if(status=='video'){
+			this.videoList()
+		}else{
+			this.getArticle()
+		}
+		  
 	  }
 	   
 	}
@@ -412,6 +487,81 @@
 		margin: auto 0;
 		right: 50rpx;
 		
+	}
+	.user-box .name{
+	    font-size: 22rpx;
+	    color: #7c7c7c;
+	}
+	.user-box .num{
+	    width: 100%;
+	    display: flex;
+	    align-items: center;
+	    margin-top: 8rpx;
+	}
+	.user-box .num image{
+	    width: 28rpx;
+	    height: 23rpx;
+	    margin-right: 10rpx;
+	}
+	.user-box .num text{
+	    font-size: 22rpx;
+	    line-height: 22rpx;
+	    color: #f84d23;
+	}
+	.content-box{
+	    width: 100%;
+	    height: auto;
+	    box-sizing: border-box;
+	    padding: 30rpx 0;
+	}
+	.content-box .items{
+	    width: 100%;
+	    height: auto;
+	    display: flex;
+	    align-items: center;
+	    justify-content: space-between;
+	    box-sizing: border-box;
+	    padding: 32rpx 30rpx 22rpx 30rpx;
+	    border-bottom: 1px solid #eee;
+	}
+	.content-box .items .right{
+	    width: 260rpx;
+	    height: 160rpx;
+	    border-radius: 10rpx;
+	    overflow: hidden;
+	}
+	.content-box .items .rightall{
+	    width: 0rem;
+	    height: 160rpx;
+	    border-radius: 10rpx;
+	    overflow: hidden;
+	}
+	.content-box .items .right image{
+	    width: 100%;
+	    height: 100%;
+	    object-fit: cover;
+	}
+	.content-box .items .left{
+	    width: 390rpx;
+	    box-sizing: border-box;
+	    padding-right:10rpx;
+	}
+	.content-box .items .leftall{
+	    width: 100%;
+	    box-sizing: border-box;
+	    padding-right:10rpx;
+	}
+	.content-box .items .left .title{
+	    font-size: 30rpx;
+	    color: #434343;
+	    height: 75rpx;
+	    overflow:hidden;
+	    text-overflow:ellipsis;
+	    display:-webkit-box;
+	    -webkit-box-orient:vertical;
+	    -webkit-line-clamp:2;
+	    line-height: 37rpx;
+	
 	}
 	
 </style>

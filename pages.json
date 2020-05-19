@@ -35,6 +35,12 @@
 			"style": {
 				"navigationBarTitleText": "我的视频"
 			}
+		},
+		{
+			"path": "pages/articleInfo/index",
+			"style": {
+				"navigationBarTitleText": "文章详情"
+			}
 		}
 	],
 	"tabBar": {

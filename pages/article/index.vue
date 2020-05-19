@@ -6,16 +6,33 @@
 		            <view class="user-box">
 		                <view class="name">中国金融信息网</view>
 		                <view class="num">
-		                    <!-- <image src="../addons/huoban_mima/static/newui/images/tongji.png" alt=""></image> -->
+		                    <image src="/static/images/tongji.png" alt=""></image>
 		                    <text> 2656</text>
 		                </view>
-		                <!-- <view href="./index.php?i=39&amp;c=entry&amp;do=so_downurl&amp;m=huoban_mima&amp;bianjita=1&amp;id=17335" class="gai">改成我的  </view> -->
+		                <!-- <view class="gai">改成我的</view> -->
 		            </view>
 		        </view>
 		        <view class="right">
 		           <image src="https://ftp.17cheng.cn/images/54/2020/05/202005170621031435.png?imageView2/1/w/300/h/200" alt="">  
 		        </view>
-		    </view>
+		 </view>
+		 <view class="items">
+		         <view class="left">
+		             <view class="title">战“疫”关键时刻!这些大咖为经济发展指路</view>
+		             <view class="user-box">
+		                 <view class="name">中国金融信息网</view>
+		                 <view class="num">
+		                     <image src="/static/images/tongji.png" alt=""></image>
+		                     <text> 2656</text>
+		                 </view>
+		                 <!-- <view class="gai">改成我的</view> -->
+		             </view>
+		         </view>
+		         <view class="right">
+		            <image src="https://ftp.17cheng.cn/images/54/2020/05/202005170621031435.png?imageView2/1/w/300/h/200" alt="">  
+		         </view>
+		  </view>
+		
 	</view>
 	
 </template>
@@ -43,6 +60,26 @@
 </script>
 
 <style>
+	.user-box .name{
+	    font-size: 22rpx;
+	    color: #7c7c7c;
+	}
+	.user-box .num{
+	    width: 100%;
+	    display: flex;
+	    align-items: center;
+	    margin-top: 8rpx;
+	}
+	.user-box .num image{
+	    width: 28rpx;
+	    height: 23rpx;
+	    margin-right: 10rpx;
+	}
+	.user-box .num text{
+	    font-size: 22rpx;
+	    line-height: 22rpx;
+	    color: #f84d23;
+	}
 	.content-box{
 	    width: 100%;
 	    height: auto;
